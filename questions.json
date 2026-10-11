@@ -1,0 +1,242 @@
+[
+ {
+  "q": "What does reliability R(t) measure?",
+  "options": [
+   "How quickly a failed item can be repaired",
+   "The probability an item performs its required function without failure for a specified time under stated conditions",
+   "The percentage of time equipment is ready for use",
+   "The total cost of maintenance over the asset life"
+  ],
+  "answer": 1,
+  "explanation": "R(t) is the probability of failure-free performance over a specified time under stated operating conditions.",
+  "topic": "Fundamentals & Importance"
+ },
+ {
+  "q": "Which statement about reliability and availability is correct?",
+  "options": [
+   "They always mean the same thing",
+   "A reliable machine is always available",
+   "A machine can be reliable but still unavailable if restoration takes too long",
+   "Availability only depends on the failure rate"
+  ],
+  "answer": 2,
+  "explanation": "Reliability ≠ Availability: long restoration time reduces availability even for a reliable machine.",
+  "topic": "Fundamentals & Importance"
+ },
+ {
+  "q": "Maintainability answers which question?",
+  "options": [
+   "How likely is it to keep working?",
+   "Is it available when we need it?",
+   "How much did it cost?",
+   "How quickly can it be restored?"
+  ],
+  "answer": 3,
+  "explanation": "Maintainability focuses on restoring function efficiently after a failure or during maintenance.",
+  "topic": "Fundamentals & Importance"
+ },
+ {
+  "q": "Which benefit of reliability is linked to fewer unplanned stops and stable throughput?",
+  "options": [
+   "Production",
+   "Quality",
+   "Safety",
+   "Asset life"
+  ],
+  "answer": 0,
+  "explanation": "Fewer unplanned stops give more stable throughput and better schedule adherence.",
+  "topic": "Fundamentals & Importance"
+ },
+ {
+  "q": "In the example 'High vibration → Bearing damage → Fatigue/wear → ?', what is the root cause?",
+  "options": [
+   "Excessive vibration",
+   "Poor lubrication / contamination",
+   "Bearing damage",
+   "Fatigue"
+  ],
+  "answer": 1,
+  "explanation": "The chain goes Symptom → Failure mode → Failure mechanism → Root cause (poor lubrication / contamination).",
+  "topic": "Failure Analysis"
+ },
+ {
+  "q": "A failure mechanism is…",
+  "options": [
+   "The specific way an item fails",
+   "The condition that initiates the failure",
+   "The physical or chemical process that produces the failure",
+   "A schedule for repairs"
+  ],
+  "answer": 2,
+  "explanation": "Examples: fatigue, corrosion, erosion, wear, overheating, insulation breakdown.",
+  "topic": "Failure Analysis"
+ },
+ {
+  "q": "FMEA / FMECA identifies…",
+  "options": [
+   "Top events using AND/OR gates",
+   "Failure modes → effects → causes → controls",
+   "Spare parts lead times",
+   "Only the most expensive failures"
+  ],
+  "answer": 1,
+  "explanation": "FMEA is a structured tool, useful before failure or when optimizing maintenance.",
+  "topic": "Failure Analysis"
+ },
+ {
+  "q": "Which method starts with an undesired top event and traces causes using AND/OR relationships?",
+  "options": [
+   "Pareto Analysis",
+   "FMEA",
+   "Fault Tree Analysis (FTA)",
+   "Root Cause Analysis"
+  ],
+  "answer": 2,
+  "explanation": "FTA works top-down from the undesired event through logical combinations of causes.",
+  "topic": "Failure Analysis"
+ },
+ {
+  "q": "Pareto analysis is used to…",
+  "options": [
+   "Rank recurring failures by frequency, downtime, cost or consequence",
+   "Calculate availability",
+   "Measure vibration",
+   "Select spare parts only"
+  ],
+  "answer": 0,
+  "explanation": "It focuses engineering effort on the failures that matter most.",
+  "topic": "Failure Analysis"
+ },
+ {
+  "q": "In the conveyor FMEA example, what is the possible cause of 'Bearing overheating'?",
+  "options": [
+   "Pulley misalignment",
+   "Excessive load / jam",
+   "Poor lubrication",
+   "Belt spillage"
+  ],
+  "answer": 2,
+  "explanation": "The action listed is to improve the lubrication plan.",
+  "topic": "Failure Analysis"
+ },
+ {
+  "q": "How is MTBF calculated?",
+  "options": [
+   "Total repair time ÷ number of repairs",
+   "Failures ÷ operating time",
+   "MTBF ÷ (MTBF + MTTR)",
+   "Operating time ÷ number of failures"
+  ],
+  "answer": 3,
+  "explanation": "Higher MTBF generally indicates fewer failures during the measured period.",
+  "topic": "Metrics"
+ },
+ {
+  "q": "What is the simple steady-state formula for availability A?",
+  "options": [
+   "MTBF ÷ (MTBF + MTTR)",
+   "MTTR ÷ MTBF",
+   "1 − R(t)",
+   "Failures ÷ operating time"
+  ],
+  "answer": 0,
+  "explanation": "A = MTBF ÷ (MTBF + MTTR), a simple steady-state approximation.",
+  "topic": "Metrics"
+ },
+ {
+  "q": "For a constant-rate exponential model, the failure rate λ is approximately…",
+  "options": [
+   "MTTR",
+   "1 / MTBF",
+   "R(t) × t",
+   "1 − A"
+  ],
+  "answer": 1,
+  "explanation": "λ ≈ 1/MTBF under a constant failure rate.",
+  "topic": "Metrics"
+ },
+ {
+  "q": "Unreliability F(t) equals…",
+  "options": [
+   "P(T > t)",
+   "MTBF ÷ MTTR",
+   "1 − R(t)",
+   "λ × MTTR"
+  ],
+  "answer": 2,
+  "explanation": "F(t) is the probability that failure has occurred by time t.",
+  "topic": "Metrics"
+ },
+ {
+  "q": "Preventive Maintenance (PM) is…",
+  "options": [
+   "Repair only after failure",
+   "Planned maintenance at time-, usage- or cycle-based intervals",
+   "Maintenance triggered only by measured condition",
+   "A decision framework for selecting strategies"
+  ],
+  "answer": 1,
+  "explanation": "Examples: lubrication, inspection, scheduled replacement.",
+  "topic": "Maintenance"
+ },
+ {
+  "q": "Which technique detects electrical hotspots and overloaded connections?",
+  "options": [
+   "Oil analysis",
+   "Ultrasound",
+   "Vibration analysis",
+   "Thermography"
+  ],
+  "answer": 3,
+  "explanation": "Thermography detects thermal anomalies such as hotspots and friction heating.",
+  "topic": "Maintenance"
+ },
+ {
+  "q": "Reliability-Centered Maintenance (RCM) is best described as…",
+  "options": [
+   "A decision framework that selects the right mix of strategies based on functions, failure modes and consequences",
+   "A single universal maintenance strategy",
+   "Run-to-failure for all assets",
+   "A spare-parts catalogue"
+  ],
+  "answer": 0,
+  "explanation": "RCM integrates preventive, predictive and reactive approaches rather than using one universal strategy.",
+  "topic": "Maintenance"
+ },
+ {
+  "q": "What is the correct predictive maintenance flow?",
+  "options": [
+   "Diagnose → Measure → Verify → Trend",
+   "Measure → Establish baseline → Trend deviation → Diagnose → Plan intervention → Verify result",
+   "Plan → Repair → Measure → Replace",
+   "Verify → Plan → Diagnose → Measure"
+  ],
+  "answer": 1,
+  "explanation": "Condition → Trend → Action.",
+  "topic": "Maintenance"
+ },
+ {
+  "q": "What does 'Root Cause Elimination' warn against?",
+  "options": [
+   "Collecting failure data",
+   "Using condition monitoring",
+   "Repeatedly replacing failed parts without addressing the initiating cause",
+   "Training operators"
+  ],
+  "answer": 2,
+  "explanation": "Fix the cause, not just the failed part.",
+  "topic": "Improvement"
+ },
+ {
+  "q": "What is the correct order of the reliability improvement loop?",
+  "options": [
+   "Analyze → Capture → Execute → Decide → Learn",
+   "Decide → Capture → Analyze → Learn → Execute",
+   "Learn → Execute → Decide → Analyze → Capture",
+   "Capture → Analyze → Decide → Execute → Learn"
+  ],
+  "answer": 3,
+  "explanation": "Reliability improves when data changes decisions — not when data is merely stored.",
+  "topic": "Improvement"
+ }
+]
