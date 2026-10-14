@@ -96,8 +96,8 @@ def header():
     st.markdown(f"""<div class="hdr">{LOGO_TAG}
     <h1>Equipment Reliability — MCQ Quiz</h1>
     <p>Fundamentals • Failure Analysis • Metrics • Maintenance • Improvement</p>
-    <span class="pill" style="background:#000">Aris</span><span class="pill" style="background:#444">Lama</span>
-    <span class="pill pill-white" style="background:#fff">Abeer Mqbaul</span></div>""", unsafe_allow_html=True)
+    <span class="pill" style="background:#000">Lama Alrwili • 202311041</span><span class="pill" style="background:#444">Aris Falah • 202308989</span>
+    <span class="pill pill-white" style="background:#fff">Abeer Mqbaul • 202309116</span></div>""", unsafe_allow_html=True)
 
 def start(pool, n, shuffle_q, shuffle_o):
     pool = [dict(q, options=list(q["options"])) for q in pool]
