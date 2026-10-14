@@ -3,7 +3,7 @@ from pathlib import Path
 import pandas as pd
 import streamlit as st
 
-st.set_page_config(page_title="Equipment Reliability – MCQ Quiz", page_icon="⚙️", layout="centered")
+st.set_page_config(page_title="Equipment Reliability – MCQ Quiz", layout="centered")
 BASE = Path(__file__).parent
 QUESTIONS = json.loads((BASE / "questions.json").read_text(encoding="utf-8"))
 TOPICS = sorted({q["topic"] for q in QUESTIONS}, key=[q["topic"] for q in QUESTIONS].index)
@@ -17,10 +17,10 @@ ss = st.session_state
 ss.setdefault("stage", "start")
 ss.setdefault("dark", False)
 
-LIGHT = dict(bg="#f1f5f7", card="#ffffff", text="#18283f", muted="#5b6b7d", border="#d5dee5",
-             ok_bg="#e6f4ec", no_bg="#f9e8e8", scheme="light")
-DARK = dict(bg="#0e1621", card="#182333", text="#e8eef4", muted="#9fb0c0", border="#2e3f55",
-            ok_bg="#12301f", no_bg="#3a1a1a", scheme="dark")
+LIGHT = dict(bg="#f2f2f2", card="#ffffff", text="#111111", muted="#555555", border="#c8c8c8",
+             ok_bg="#ebebeb", no_bg="#ffffff", no_style="dashed", scheme="light")
+DARK = dict(bg="#101010", card="#1c1c1c", text="#f2f2f2", muted="#aaaaaa", border="#444444",
+            ok_bg="#262626", no_bg="#101010", no_style="dashed", scheme="dark")
 
 def apply_theme(dark):
     t = DARK if dark else LIGHT
@@ -36,28 +36,28 @@ def apply_theme(dark):
 .stApp [data-testid="stCaptionContainer"],.stApp [data-testid="stCaptionContainer"] *{{color:var(--muted)!important}}
 
 /* header card: fixed colours, never affected by Day/Night */
-.hdr{{background:#fff;border-bottom:5px solid #2f8483;border-radius:18px;padding:14px;text-align:center;box-shadow:0 2px 10px #0001}}
-.stApp .hdr h1{{font-size:1.5rem;margin:6px 0 2px;color:#18283f!important}}
-.stApp .hdr p{{margin:0;color:#5b6b7d!important;font-size:.85rem}}
+.hdr{{background:#fff;border-bottom:5px solid #000;border-radius:18px;padding:14px;text-align:center;box-shadow:0 2px 10px #0001}}
+.stApp .hdr h1{{font-size:1.5rem;margin:6px 0 2px;color:#111!important}}
+.stApp .hdr p{{margin:0;color:#555!important;font-size:.85rem}}
 .stApp .hdr .pill{{display:inline-block;padding:5px 16px;border-radius:99px;color:#fff!important;font-weight:600;font-size:.85rem;margin:8px 4px 0}}
-.stApp .hdr .pill-gold{{color:#18283f!important}}
+.stApp .hdr .pill-white{{color:#111!important;border:1.5px solid #111}}
 
 /* Night-mode switch: fixed colours too */
-.st-key-dark{{background:#fff;border:1px solid #cfd8de;border-radius:99px;padding:4px 12px;width:fit-content;margin-left:auto}}
-.st-key-dark label,.st-key-dark label *{{color:#18283f!important;font-weight:600}}
-.st-key-dark [data-baseweb="checkbox"]>div:first-child{{background:#8a99a8!important}}
-.st-key-dark [data-baseweb="checkbox"]:has(input:checked)>div:first-child{{background:#2f8483!important}}
+.st-key-dark{{background:#fff;border:1px solid #c8c8c8;border-radius:99px;padding:4px 12px;width:fit-content;margin-left:auto}}
+.st-key-dark label,.st-key-dark label *{{color:#111!important;font-weight:600}}
+.st-key-dark [data-baseweb="checkbox"]>div:first-child{{background:#888!important}}
+.st-key-dark [data-baseweb="checkbox"]:has(input:checked)>div:first-child{{background:#000!important}}
 .st-key-dark [data-baseweb="checkbox"]>div:first-child>div{{background:#fff!important}}
 
 /* feedback boxes */
-.fb-ok{{background:{t['ok_bg']};border-left:5px solid #2e8b57;padding:10px 14px;border-radius:10px}}
-.fb-no{{background:{t['no_bg']};border-left:5px solid #b84343;padding:10px 14px;border-radius:10px}}
+.fb-ok{{background:{t['ok_bg']};border-left:5px solid var(--text);padding:10px 14px;border-radius:10px}}
+.fb-no{{background:{t['no_bg']};border:1px solid var(--border);border-left:5px {t['no_style']} var(--text);padding:10px 14px;border-radius:10px}}
 .stApp .fb-ok,.stApp .fb-ok *,.stApp .fb-no,.stApp .fb-no *{{color:var(--text)}}
 
 /* buttons */
-.stApp [data-testid="stBaseButton-primary"]{{background:#2f8483;border-color:#2f8483}}
-.stApp [data-testid="stBaseButton-primary"],.stApp [data-testid="stBaseButton-primary"] *{{color:#fff!important}}
-.stApp [data-testid="stBaseButton-primary"]:hover{{background:#246a69;border-color:#246a69}}
+.stApp [data-testid="stBaseButton-primary"]{{background:var(--text);border-color:var(--text)}}
+.stApp [data-testid="stBaseButton-primary"],.stApp [data-testid="stBaseButton-primary"] *{{color:var(--bg)!important}}
+.stApp [data-testid="stBaseButton-primary"]:hover{{opacity:.85}}
 .stApp [data-testid="stBaseButton-primary"]:disabled{{opacity:.45}}
 .stApp [data-testid="stBaseButton-secondary"],.stApp [data-testid="stDownloadButton"] button{{background:var(--card);border:1px solid var(--border)}}
 .stApp [data-testid="stBaseButton-secondary"] *,.stApp [data-testid="stDownloadButton"] button *{{color:var(--text)!important}}
@@ -75,13 +75,18 @@ def apply_theme(dark):
 .stApp [data-testid="stAlert"] *{{color:var(--text)!important}}
 .stApp [data-testid="stProgress"] *{{color:var(--text)}}
 .stApp [data-testid="stVegaLiteChart"],.stApp [data-testid="stArrowVegaLiteChart"]{{background:#fff;border-radius:12px;padding:8px}}
-.big{{font-size:3.2rem;font-weight:800;color:#2f8483!important;text-align:center;line-height:1.1}}
+.big{{font-size:3.2rem;font-weight:800;color:var(--text)!important;text-align:center;line-height:1.1}}
+/* black & white accents */
+.stApp [data-testid="stSlider"] [role="slider"]{{background:var(--text)!important;border-color:var(--text)!important}}
+.stApp [data-baseweb="tag"]{{background:var(--text)!important}}
+.stApp [data-baseweb="tag"] *{{color:var(--bg)!important}}
+.stApp [data-baseweb="radio"]>div:first-child{{border-color:var(--text)!important}}
 </style>""", unsafe_allow_html=True)
 
 apply_theme(ss.dark)
 
 _, tcol = st.columns([3, 1])
-tcol.toggle("🌙 Night mode", key="dark")
+tcol.toggle("Night mode", key="dark")
 
 _logo = BASE / "logo.png"
 LOGO = base64.b64encode(_logo.read_bytes()).decode() if _logo.exists() else ""
@@ -91,8 +96,8 @@ def header():
     st.markdown(f"""<div class="hdr">{LOGO_TAG}
     <h1>Equipment Reliability — MCQ Quiz</h1>
     <p>Fundamentals • Failure Analysis • Metrics • Maintenance • Improvement</p>
-    <span class="pill" style="background:#18283f">Aris</span><span class="pill" style="background:#2f8483">Lama</span>
-    <span class="pill pill-gold" style="background:#d09d4b">Abeer Mqbaul</span></div>""", unsafe_allow_html=True)
+    <span class="pill" style="background:#000">Aris</span><span class="pill" style="background:#444">Lama</span>
+    <span class="pill pill-white" style="background:#fff">Abeer Mqbaul</span></div>""", unsafe_allow_html=True)
 
 def start(pool, n, shuffle_q, shuffle_o):
     pool = [dict(q, options=list(q["options"])) for q in pool]
@@ -119,7 +124,7 @@ if ss.stage == "start":
     sq = c1.toggle("Shuffle questions", True)
     so = c2.toggle("Shuffle answer options", True)
     st.caption(f"{len(pool)} questions available in the selected topics.")
-    if st.button("Start quiz ▶", type="primary", use_container_width=True, disabled=not pool):
+    if st.button("Start quiz →", type="primary", use_container_width=True, disabled=not pool):
         start(pool, n, sq, so); st.rerun()
 
 # ---------------- QUIZ ----------------
@@ -140,10 +145,10 @@ elif ss.stage == "quiz":
             ss.checked = True; st.rerun()
     else:
         r = ss.results[-1]
-        if r["correct"]: st.markdown(f'<div class="fb-ok">✅ <b>Correct!</b> {r["explanation"]}</div>', unsafe_allow_html=True)
-        else: st.markdown(f'<div class="fb-no">❌ <b>Not quite.</b> Correct answer: <b>{r["correct_answer"]}</b><br>{r["explanation"]}</div>', unsafe_allow_html=True)
+        if r["correct"]: st.markdown(f'<div class="fb-ok">✓ <b>Correct!</b> {r["explanation"]}</div>', unsafe_allow_html=True)
+        else: st.markdown(f'<div class="fb-no">✗ <b>Not quite.</b> Correct answer: <b>{r["correct_answer"]}</b><br>{r["explanation"]}</div>', unsafe_allow_html=True)
         last = i == len(qs) - 1
-        if st.button("See results ▶" if last else "Next question ▶", type="primary", use_container_width=True):
+        if st.button("See results →" if last else "Next question →", type="primary", use_container_width=True):
             if last: ss.stage, ss.elapsed = "end", time.time() - ss.t0
             else: ss.i += 1; ss.checked = False
             st.rerun()
@@ -157,16 +162,16 @@ else:
     pct = score / total
     st.markdown(f'<div class="big">{score} / {total}</div>', unsafe_allow_html=True)
     st.markdown(f"<p style='text-align:center'>{pct:.0%} • Time: {int(ss.elapsed//60)}m {int(ss.elapsed%60)}s</p>", unsafe_allow_html=True)
-    msg = "Excellent! 🌟" if pct >= .9 else "Great job! 👏" if pct >= .7 else "Good effort — review the explanations below." if pct >= .5 else "Keep practising — review the presentation and try again."
-    (st.balloons() if pct >= .9 else None); st.info(msg)
+    msg = "Excellent!" if pct >= .9 else "Great job!" if pct >= .7 else "Good effort — review the explanations below." if pct >= .5 else "Keep practising — review the presentation and try again."
+    st.info(msg)
 
     st.subheader("Score by topic")
     bt = res.groupby("topic", sort=False).correct.mean().mul(100).round(0)
-    st.bar_chart(bt, horizontal=True)
+    st.bar_chart(bt, horizontal=True, color="#000000")
 
     st.subheader("Review")
     for n, r in res.iterrows():
-        with st.expander(f"{'✅' if r.correct else '❌'}  {n+1}. {r.question}"):
+        with st.expander(f"{'✓' if r.correct else '✗'}  {n+1}. {r.question}"):
             st.write(f"**Your answer:** {r.your}")
             if not r.correct: st.write(f"**Correct answer:** {r.correct_answer}")
             st.caption(r.explanation)
@@ -177,5 +182,5 @@ else:
         start(wrong, len(wrong), True, True); st.rerun()
     if c2.button("New quiz", type="primary", use_container_width=True):
         ss.stage = "start"; st.rerun()
-    st.download_button("⬇ Download results (CSV)", res.to_csv(index=False).encode("utf-8-sig"),
+    st.download_button("↓ Download results (CSV)", res.to_csv(index=False).encode("utf-8-sig"),
                        "quiz_results.csv", "text/csv", use_container_width=True)
